@@ -4,7 +4,8 @@ import livro from "../models/Livro.js";
 class LivroController {
   static async listarLivros(req, res) {
     try {
-      const listaLivros = await livro.find({});
+      const listaLivros = await livro.find({}); // embedding
+      //const listaLivros = await livro.find({}).populate("autor").exec(); // referencing
       res.status(200).json(listaLivros);
     } catch (erro) {
       res
@@ -16,7 +17,8 @@ class LivroController {
   static async listarLivro(req, res) {
     try {
       const id = req.params.id;
-      const listaLivro = await livro.findById(id);
+      const listaLivro = await livro.findById(id); // embedding
+      //const listaLivros = await livro.findById(id).populate("autor").exec(); // referencing
       res.status(200).json(listaLivro);
     } catch (erro) {
       res
